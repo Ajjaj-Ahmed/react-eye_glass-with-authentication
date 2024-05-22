@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'; // ES6
 import {
   FacebookAuthProvider, createUserWithEmailAndPassword,
   onAuthStateChanged, signInWithEmailAndPassword,
-  signInWithPopup, signOut, GoogleAuthProvider
+  signInWithPopup, signOut, GoogleAuthProvider,
+  GithubAuthProvider,
+  TwitterAuthProvider
 } from "firebase/auth";
 
 
@@ -16,7 +18,9 @@ const FirebaseProvider = ({ children }) => {
 
   // Social auth provider
   const googleProvider = new GoogleAuthProvider();
-  const fbProvider = new FacebookAuthProvider()
+  const fbProvider = new FacebookAuthProvider();
+  const githubProvider = new GithubAuthProvider()
+  const twitterProvider = new TwitterAuthProvider()
 
   // create user with email, pass
   const createUser = (email, password) => {
@@ -29,7 +33,8 @@ const FirebaseProvider = ({ children }) => {
 
   // sign out a user
   const logOut = () => {
-    return signOut(auth)
+    setUser(null)
+    signOut(auth)
   }
 
   // on auth state change
@@ -51,13 +56,23 @@ const FirebaseProvider = ({ children }) => {
     return signInWithPopup(auth, fbProvider);
   }
 
+  const githubLogin = () =>{
+    return signInWithPopup(auth, githubProvider)
+  }
+
+  const twitterLogin = ()=>{
+    return signInWithPopup(auth, twitterProvider)
+  }
+
   const allValues = {
     user,
     createUser,
     signInUser,
     logOut,
     googleLogin,
-    fbLogin
+    fbLogin,
+    githubLogin,
+    twitterLogin
   }
   return (
     <AuthContext.Provider value={allValues}>

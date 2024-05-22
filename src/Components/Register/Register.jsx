@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
+import Navbar from "../Navbar/Navbar";
 
 const Register = () => {
   const {createUser} = useAuth();
@@ -19,6 +20,7 @@ const Register = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
       <div className="hero min-h-screen bg-base-200">
       <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h2 className="text-center font-bold text-3xl">Register Here</h2>

@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../FirebaseProvider/FirebaseProvider";
+import useAuth from "../../Hook/useAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext)
-  
+  const { user, logOut } = useAuth()
+
   const NavLinks = <>
     <li><NavLink to={'/'}>Product</NavLink></li>
     <li><NavLink to={'/about'}>About</NavLink></li>
@@ -12,7 +11,7 @@ const Navbar = () => {
   </>
   return (
     <div>
-      
+
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -38,7 +37,12 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {
-            user ? <Link onClick={logOut} className="btn btn-secondary">Log Out</Link> : <Link className="btn btn-accent" to={'/login'}>Login</Link>
+            user ?
+              <button onClick={logOut} className="btn btn-sm btn-secondary">Logout</button>
+              :
+              <Link to={'/login'}>
+                <button className="btn btn-sm btn-info">Login</button>
+              </Link>
           }
         </div>
       </div>
