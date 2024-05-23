@@ -12,6 +12,7 @@ import Home from './Pages/Home/Home.jsx';
 import Register from './Components/Register/Register.jsx';
 import ErrorElement from './Components/ErrorElement/ErrorElement.jsx';
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 
 const url = "https://my-json-server.typicode.com/faarhaan10/react-sunglasses/sunglasses";
 
@@ -38,8 +39,8 @@ const router = createBrowserRouter([
       },
       {
         path:'/item/:id',
-        element:<ProductDetails></ProductDetails>,
-        loader:({params})=>fetch(url)
+        element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+        loader:()=>fetch(url)
       }
     ]
   },

@@ -14,7 +14,7 @@ export const AuthContext = createContext(null)
 
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  console.log('user come from auth:', user)
+  //console.log('user come from auth:', user)
 
   // Social auth provider
   const googleProvider = new GoogleAuthProvider();

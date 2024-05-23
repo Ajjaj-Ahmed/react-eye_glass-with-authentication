@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar"
 import ShowProducts from "../../Components/ShowProducts/ShowProducts";
 import Footer from "../../Components/Footer/Footer";
 const Home = () => {
   const glasses = useLoaderData()
-  console.log(glasses)
+  //console.log(glasses)
+
   return (
     <div>
       <Navbar></Navbar>

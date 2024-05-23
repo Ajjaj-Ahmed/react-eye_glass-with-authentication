@@ -37,7 +37,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {
-            user ?
+            user?.email ?
               <button onClick={logOut} className="btn btn-sm btn-secondary">Logout</button>
               :
               <Link to={'/login'}>

@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import Navbar from "../Navbar/Navbar";
 
 const Register = () => {
   const {createUser} = useAuth();
+  const location = useLocation();
+  const from = location?.state || '/'
+  console.log(location);
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -14,7 +18,11 @@ const Register = () => {
   const onSubmit = (data) => {
     const {email,password} = data;
     createUser(email, password)
-    .then()
+    .then(result=>{
+      if(result.user){
+      navigate(from)
+      }
+    })
     .catch()
   }
 
